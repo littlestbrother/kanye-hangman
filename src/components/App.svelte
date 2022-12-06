@@ -4,8 +4,7 @@
 </script>
 
 <main>
-  <h1>Kanye Hangman Game</h1>
-
+  <h1>Kanye West Hangman</h1>
   <div id="get-quote">
     <GetKanyeQuote />
   </div>
