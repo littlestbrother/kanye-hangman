@@ -5,11 +5,9 @@ import { writable } from "svelte/store";
 // quote
 export const quote = writable(undefined);
 export const quoteObfuscated = writable(undefined);
-export const quoteProgress = writable(undefined);
+export const quoteResolved = writable(undefined);
 
-// character
-export const invalidCharacters = writable(undefined);
-export const validCharacters = writable(undefined);
-
-// score
-export const failures = writable(0);
+// guesses
+export const wrongGuessCount = writable(0);
+export const correctGuessCount = writable(0);
+export const wrongGuessTolerance = writable(undefined);

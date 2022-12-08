@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // TODO: get another quote if the first quote is too long?
-export default async () => {
+export const getKanyeRestQuote = async () => {
 
   try {
     // nested destructuring of kanye rest api response
