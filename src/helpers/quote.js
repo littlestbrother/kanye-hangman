@@ -1,3 +1,5 @@
+import { alphaNumericCharacters } from "@src/helpers/constants";
+
 // replace alpha-numeric characters with underscores & spaces with middle dot ascii character
 export const obfuscateQuote = (quote) => {
   let obfuscatedQuote = quote.replace(/[a-zA-Z0-9]/g, "·");
@@ -7,12 +9,25 @@ export const obfuscateQuote = (quote) => {
 
 export const resolveQuote = (quote) => {
 
-  const alphaNumericCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-  const resolved = {};
+  const resolved = {
+    present: [],
+    missing: []
+  };
 
   for (const character of alphaNumericCharacters) {
-    resolved[character] = (quote.split(character).length - 1);
+
+    const characterCount = quote.split(character).length - 1
+
+    // conditionally assign property
+    if (characterCount > 0) {
+      resolved.present.push(character);
+    } else {
+      resolved.missing.push(character);
+    }
+
   }
+
+  console.log(resolved);
 
   return resolved;
 }
