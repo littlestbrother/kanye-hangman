@@ -1,11 +1,10 @@
 <script>
-  // import Counter from "./lib/helpers/Counter.svelte";
-  import LoadKanyeQuote from "./LoadKanyeQuote.svelte";
+  import LoadQuoteButton from "@src/components/LoadQuoteButton.svelte";
 </script>
 
 <main>
   <h1>Kanye West Hangman</h1>
-  <div id="get-quote">
-    <LoadKanyeQuote />
+  <div>
+    <LoadQuoteButton />
   </div>
 </main>
