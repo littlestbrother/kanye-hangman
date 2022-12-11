@@ -16,7 +16,7 @@ export const resolveQuote = (quote) => {
 
   for (const character of alphaNumericCharacters) {
 
-    const characterCount = quote.split(character).length - 1
+    const characterCount = quote.toLowerCase().split(character).length - 1
 
     // conditionally assign property
     if (characterCount > 0) {

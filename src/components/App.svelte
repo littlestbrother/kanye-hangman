@@ -23,7 +23,7 @@
 
     <!-- render if the quote has been revealed -->
     {#if obfuscatedWisdom}
-      <h3 id="quote">"{obfuscatedWisdom}"</h3>
+      <h3><span class="quote">"{obfuscatedWisdom}"</span></h3>
       <Keyboard />
     {/if}
 
