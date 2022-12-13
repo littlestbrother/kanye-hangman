@@ -11,5 +11,4 @@ export const quoteResolved = writable({
 });
 
 // guess data
-export const guesses = writable({ success: { count: 0, characters: [] }, fail: { count: 0, characters: [] }, attemptsLeft: 0 })
-export const wrongGuessTolerance = writable(undefined);
+export const guesses = writable({ success: { count: 0 }, fail: { count: 0 }, attemptsLeft: 0, wrongGuessTolerance: 0 })

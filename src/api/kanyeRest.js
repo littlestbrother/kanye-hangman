@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// TODO: get another quote if the first quote is too long?
+// TODO: get a short quote if a user toggles option
 export const getKanyeRestQuote = async () => {
 
   try {
