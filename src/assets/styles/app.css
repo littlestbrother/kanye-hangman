@@ -72,11 +72,11 @@ button:focus-visible {
 }
 
 input {
-  width: 50%;
+  width: 57%;
   margin: 5px;
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.6em 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -106,11 +106,11 @@ input:hover {
 }
 
 .keyboard {
-  /* TODO: make this width smaller for big screens! */
   margin: auto;
 }
 
 .disabled {
+  cursor: none;
   pointer-events: none;
 }
 
@@ -123,16 +123,22 @@ input:hover {
 }
 
 .gameboard {
-  background-color: #222222;
+  background-color: #212121;
   border-radius: 10px;
   padding: 1em;
   margin: auto;
   width: 95%;
 }
 
+@media only screen and (min-width: 768px) {
+  .gameboard {
+    width: 45%;
+  }
+}
+
 .hangman {
-  width: 200px;
-  height: 200px;
+  width: 95%;
+  height: 12em;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 10px;
 }
