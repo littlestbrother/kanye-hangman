@@ -11,24 +11,18 @@ export const obfuscateQuote = (quote) => {
 export const resolveQuote = (quote) => {
 
   const resolved = {
-    present: [],
-    missing: []
+    present: []
   };
 
   for (const character of alphaNumericCharacters) {
 
-    const characterCount = quote.toLowerCase().split(character).length - 1
+    const characterCount = quote.split(character).length - 1
 
     // conditionally assign property
     if (characterCount > 0) {
       resolved.present.push(character);
-    } else {
-      resolved.missing.push(character);
     }
-
   }
-
-  console.log(resolved);
 
   return resolved;
 }
