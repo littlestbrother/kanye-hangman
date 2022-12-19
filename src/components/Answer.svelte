@@ -1,30 +1,30 @@
 <script>
-    import { gameOutcome, guesses, quote } from '@src/helpers/storage';
+    import { answerOutcome, guesses, quote } from '@src/helpers/storage';
 
+    // subscribe to values in storage
     let guessesData;
     guesses.subscribe((value) => {
         guessesData = value;
     });
 
-    let kanyeQuote;
+    let kanyeRestQuote;
     quote.subscribe((value) => {
-        kanyeQuote = value;
+        kanyeRestQuote = value;
     });
 
-    let userGuess;
+    let userSolution;
 
     const guessQuote = () => {
-        // save user from submitting nothing
-        if (!userGuess) {
+        // save the user from themselves if they accidentally submit nothing
+        if (!userSolution) {
             return;
         }
 
-        const userGuessLow = userGuess;
-
-        if (userGuessLow == kanyeQuote) {
-            gameOutcome.update((value) => 'young scholar yeezus is impressed with your work! 🎉');
+        // check if the user provided a solution that is correct- store the answer outcome accordingly
+        if (userSolution.toLowerCase() == kanyeRestQuote) {
+            answerOutcome.update((value) => 'young scholar yeezus is impressed with your work! 🎉');
         } else {
-            gameOutcome.update((value) => "you ain't got the answers sway.");
+            answerOutcome.update((value) => "you ain't got the answers sway.");
         }
     };
 </script>
@@ -34,8 +34,8 @@
     {#if guessesData.attemptsLeft > 0}
         <h2>guesses available: {guessesData.attemptsLeft}</h2>
     {:else}
-        <!-- if user is out of guesses then render a hint -->
+        <!-- if user is out of guesses then render directions -->
         <h3>submit your final guess below 👇</h3>
     {/if}
-    <input bind:value={userGuess} type="text" placeholder="beware punctuation" /><button class="answer-button" on:click={guessQuote}>✓</button>
+    <input bind:value={userSolution} type="text" placeholder="beware punctuation" /><button class="answer-button" on:click={guessQuote}>✓</button>
 </div>

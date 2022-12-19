@@ -1,49 +1,49 @@
 <script>
-    import LoadQuoteButtons from '@src/components/LoadQuoteButtons.svelte';
+    import GetQuoteButtons from '@src/components/GetQuoteButtons.svelte';
     import Keyboard from '@src/components/Keyboard.svelte';
-    import { gameOutcome, quoteObfuscated } from '@src/helpers/storage';
-    import Hangman from './Hangman.svelte';
+    import { answerOutcome, quoteObfuscated } from '@src/helpers/storage';
+    import Portrait from './Portrait.svelte';
     import Restart from './Restart.svelte';
 
-    // subscribe to "quoteObfuscated" value in storage
-    let obfuscatedWisdom;
+    // subscribe to values in storage
+    let obfuscatedQuote;
     quoteObfuscated.subscribe((value) => {
-        obfuscatedWisdom = value;
+        obfuscatedQuote = value;
     });
 
     let outcome;
-    gameOutcome.subscribe((value) => {
+    answerOutcome.subscribe((value) => {
         outcome = value;
     });
 </script>
 
 <main>
     <div>
-        <!-- render if the quote has NOT been resolved -->
-        {#if !obfuscatedWisdom && !outcome}
+        <!-- render if the quote has not been retrieved and obfuscated, and the user has not provided solution -->
+        {#if !obfuscatedQuote && !outcome}
             <h1>what would <em>yeezus</em> do?</h1>
-            <LoadQuoteButtons />
+            <GetQuoteButtons />
         {/if}
 
-        <!-- render if the quote has been revealed -->
-        {#if obfuscatedWisdom && !outcome}
+        <!-- render if the quote has been retrieved and obfuscated, and the user has not provided solution -->
+        {#if obfuscatedQuote && !outcome}
             <h3>
                 <span style="background-color:#1a1a1a; padding:8px; border-radius:10px">what would <em>yeezus</em> do?</span>
             </h3>
             <div class="gameboard">
-                <Hangman />
-                <h3><span class="quote">"{obfuscatedWisdom}"</span></h3>
+                <Portrait />
+                <h3><span class="quote">"{obfuscatedQuote}"</span></h3>
                 <Keyboard />
             </div>
         {/if}
 
-        <!-- render if the user has made their final answer -->
+        <!-- render if the user has provided quote solution -->
         {#if outcome}
             <!-- outcome text -->
             <h1 class="jumbo">{outcome}</h1>
-            <!-- if the user failes -->
+            <!-- if the user's solution was incorrect -->
             {#if outcome == "you ain't got the answers sway."}
-                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif"/>
+                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
             {/if}
 
             <!-- if the user succeeded -->

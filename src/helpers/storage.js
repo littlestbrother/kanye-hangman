@@ -1,16 +1,13 @@
 import { writable } from "svelte/store";
 
-// this is where application wide variables go
-
 // quote
-export const quote = writable(undefined);
-export const quoteObfuscated = writable(undefined);
-export const quoteResolved = writable({
-  present: []
-});
+export const quote = writable(null);
+export const quoteObfuscated = writable(null);
+export const quoteResolved = writable({ correctCharacters: [] });
 
-// guess data
-export const guesses = writable({ count: 0, attemptsLeft: 0, wrongGuessTolerance: 0 })
-export const gameOutcome = writable(null);
+// guess
+export const guesses = writable({ count: 0, attemptsLeft: 0, attemptsAllowed: 0 })
 
-export const allowExplicitQuotes = writable(false);
+// game
+export const answerOutcome = writable(null);
+export const explicitAllowed = writable(false);

@@ -3,30 +3,33 @@ import Filter from 'bad-words'
 
 const filter = new Filter();
 
-let quoteRetrievalAttempts = 1;
+let retrievalAttempts = 0;
 
 export const getKanyeRestQuote = async ({ explicitAllowed }) => {
 
   try {
+
+    retrievalAttempts++;
+
     // nested destructuring of kanye rest api response
     const { data: { quote: text } } = await axios({ method: 'get', url: 'https://api.kanye.rest' })
 
-    // check length of quote
+    // test quote string length (too many characters is too tedious for gameplay)
     if (text.length > 90) {
-      throw Error(`quote is too long! containing ${(text.length)} characters... ${50 - quoteRetrievalAttempts} attempts left`);
+      throw Error(`quote is too long! containing ${(text.length)} characters... ${50 - retrievalAttempts} attempts left`);
     }
 
-    // check if the quote contains profanity
+    // text for explicit quotes if the user has disabled them
     if (!explicitAllowed && filter.isProfane(text)) {
-      throw Error(`quote "${text}" contains profanity!... ${50 - quoteRetrievalAttempts} attempts left`);
+      throw Error(`quote "${text}" contains profanity!... ${50 - retrievalAttempts} attempts left`);
     }
 
     return text.toLowerCase();
 
+    // retry quote retrieval up to 50 times if any of the conditions above fail
   } catch (err) {
     console.error(err);
-    quoteRetrievalAttempts++
-    if (quoteRetrievalAttempts < 50) {
+    if (retrievalAttempts <= 50) {
       return await getKanyeRestQuote({ explicitAllowed });
     } else {
       throw err;
