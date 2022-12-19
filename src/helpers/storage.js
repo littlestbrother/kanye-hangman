@@ -12,3 +12,5 @@ export const quoteResolved = writable({
 // guess data
 export const guesses = writable({ count: 0, attemptsLeft: 0, wrongGuessTolerance: 0 })
 export const gameOutcome = writable(null);
+
+export const allowExplicitQuotes = writable(false);

@@ -15,5 +15,5 @@
 </script>
 
 <div>
-    <button on:click={resetState}><h1>go again ↺</h1></button>
+    <button on:click={resetState}><h2>go again ↺</h2></button>
 </div>

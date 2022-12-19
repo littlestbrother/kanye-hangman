@@ -22,7 +22,7 @@
         const userGuessLow = userGuess;
 
         if (userGuessLow == kanyeQuote) {
-            gameOutcome.update((value) => 'yeezus is very proud of you :)');
+            gameOutcome.update((value) => 'young scholar yeezus is impressed with your work!');
         } else {
             gameOutcome.update((value) => "you ain't got the answers sway.");
         }

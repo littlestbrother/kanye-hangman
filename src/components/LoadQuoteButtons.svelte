@@ -1,18 +1,28 @@
 <script>
     import { getKanyeRestQuote } from '@src/api/kanyeRest';
     import { obfuscateQuote, resolveQuote } from '@src/helpers/quote';
-    import { guesses, quote, quoteObfuscated, quoteResolved } from '@src/helpers/storage';
+    import { allowExplicitQuotes, guesses, quote, quoteObfuscated, quoteResolved } from '@src/helpers/storage';
+    import Toggle from 'svelte-toggle';
 
     let guessesData;
     guesses.subscribe((value) => {
         guessesData = value;
     });
 
+    let toggled
+    allowExplicitQuotes.subscribe((value => {
+        toggled = value;
+    }))
+
+    const allowExplicit = () => {
+        allowExplicitQuotes.update((value) => toggled);
+    }
+
     // get the quote from the kanye rest api and update values relating to quote in storage
     const loadQuote = async () => {
         try {
             // update "quote" value in storage
-            const kanyeQuote = await getKanyeRestQuote();
+            const kanyeQuote = await getKanyeRestQuote({explicitAllowed: toggled});
             quote.update((value) => kanyeQuote);
 
             // update "quoteObfuscated" value in storage
@@ -32,6 +42,7 @@
             console.error(err);
         }
     };
+
 </script>
 
 <div>
@@ -39,5 +50,6 @@
     <button on:click={loadQuote}>receive words of wisdom from kanye west</button>
     <br />
     <!-- TODO: make this a switch toggle & actually work -->
-    <button class="toggle">disable explicit quotes</button>
+    <h3>allow explicit quotes</h3>
+    <Toggle class='toggle' bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit}/>
 </div>

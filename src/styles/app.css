@@ -44,7 +44,8 @@ h1 {
 }
 
 .toggle {
-  margin: 3px;
+  /* top: 3px; */
+  margin: auto;
 }
 
 button {
@@ -140,6 +141,13 @@ input:hover {
 .hangman {
   width: 95%;
   height: 12em;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-results-image {
+  width: 55%;
+  height: 10em;
   object-fit: cover;
   border-radius: 10px;
 }
