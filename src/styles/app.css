@@ -29,23 +29,19 @@ h1 {
   line-height: 1.1;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+a {
+  color: white;
+  text-decoration: none;
 }
 
-.quote {
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 3px;
   background-color: #1a1a1a;
-  padding: 5px;
-  border-radius: 8px;
-  display: inline-block;
-}
-
-.toggle {
-  /* top: 3px; */
-  margin: auto;
+  text-align: center;
 }
 
 button {
@@ -88,6 +84,25 @@ input {
 
 input:hover {
   border-color: #47B5FF;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.quote {
+  background-color: #1a1a1a;
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.toggle {
+  /* top: 3px; */
+  margin: auto;
 }
 
 .key {
@@ -146,8 +161,9 @@ input:hover {
 }
 
 .game-results-image {
-  width: 55%;
+  width: 95%;
   height: 10em;
   object-fit: cover;
   border-radius: 10px;
+  margin-bottom: 30px;
 }

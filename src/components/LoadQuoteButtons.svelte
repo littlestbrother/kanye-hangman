@@ -9,20 +9,20 @@
         guessesData = value;
     });
 
-    let toggled
-    allowExplicitQuotes.subscribe((value => {
+    let toggled;
+    allowExplicitQuotes.subscribe((value) => {
         toggled = value;
-    }))
+    });
 
     const allowExplicit = () => {
         allowExplicitQuotes.update((value) => toggled);
-    }
+    };
 
     // get the quote from the kanye rest api and update values relating to quote in storage
     const loadQuote = async () => {
         try {
             // update "quote" value in storage
-            const kanyeQuote = await getKanyeRestQuote({explicitAllowed: toggled});
+            const kanyeQuote = await getKanyeRestQuote({ explicitAllowed: toggled });
             quote.update((value) => kanyeQuote);
 
             // update "quoteObfuscated" value in storage
@@ -32,24 +32,20 @@
             const resolvedQuote = resolveQuote(kanyeQuote);
             quoteResolved.update((value) => resolvedQuote);
 
-            // calculate how many wrong guesses will be allowed
-            guessesData.wrongGuessTolerance = Math.round(resolvedQuote.present.length / 2);
+            // calculate how many wrong guesses will be allowed (half the length of present characters + a tenth of the length of present characters)
+            guessesData.wrongGuessTolerance = Math.round(resolvedQuote.present.length / 2) + Math.round(resolvedQuote.present.length / 10);
             guessesData.attemptsLeft = guessesData.wrongGuessTolerance;
             guesses.update((value) => guessesData);
-
-            console.log(kanyeQuote);
         } catch (err) {
             console.error(err);
         }
     };
-
 </script>
 
 <div>
     <!-- Button for user to get quote from Kanye Rest API -->
     <button on:click={loadQuote}>receive words of wisdom from kanye west</button>
     <br />
-    <!-- TODO: make this a switch toggle & actually work -->
     <h3>allow explicit quotes</h3>
-    <Toggle class='toggle' bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit}/>
+    <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} />
 </div>

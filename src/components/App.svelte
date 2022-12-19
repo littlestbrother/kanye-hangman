@@ -43,11 +43,11 @@
             <h1 class="jumbo">{outcome}</h1>
             <!-- if the user failes -->
             {#if outcome == "you ain't got the answers sway."}
-                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
+                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif"/>
             {/if}
 
             <!-- if the user succeeded -->
-            {#if outcome == 'young scholar yeezus is impressed with your work!'}
+            {#if outcome == 'young scholar yeezus is impressed with your work! 🎉'}
                 <img class="game-results-image" src="https://media.tenor.com/SurWqHd37lIAAAAC/kanye-west-clap.gif" />
             {/if}
             <!-- restart game button -->
