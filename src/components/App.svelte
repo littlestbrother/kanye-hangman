@@ -30,7 +30,7 @@
             <h3>
                 <span style="background-color:#1a1a1a; padding:8px; border-radius:10px">what would <em>yeezus</em> do?</span>
             </h3>
-            <div class="gameboard">
+            <div class="card">
                 <Portrait />
                 <h3><span class="quote">"{obfuscatedQuote}"</span></h3>
                 <Keyboard />
@@ -40,18 +40,49 @@
         <!-- render if the user has provided quote solution -->
         {#if outcome}
             <!-- outcome text -->
-            <h1 class="jumbo">{outcome}</h1>
+            <h1>{outcome}</h1>
             <!-- if the user's solution was incorrect -->
             {#if outcome == "you ain't got the answers sway."}
-                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
+                <img class="results-portrait" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
             {/if}
 
             <!-- if the user succeeded -->
             {#if outcome == 'young scholar yeezus is impressed with your work! 🎉'}
-                <img class="game-results-image" src="https://media.tenor.com/SurWqHd37lIAAAAC/kanye-west-clap.gif" />
+                <img class="results-portrait" src="https://media.tenor.com/SurWqHd37lIAAAAC/kanye-west-clap.gif" />
             {/if}
             <!-- restart game button -->
             <Restart />
         {/if}
     </div>
 </main>
+
+<style>
+    .quote {
+        background-color: #1a1a1a;
+        padding: 5px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+    .card {
+        background-color: #212121;
+        border-radius: 10px;
+        padding: 1em;
+        margin: auto;
+        width: 95%;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .card {
+            width: 45%;
+        }
+    }
+
+    .results-portrait {
+        width: 95%;
+        height: 10em;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+</style>

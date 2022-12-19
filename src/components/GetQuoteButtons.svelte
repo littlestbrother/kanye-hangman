@@ -53,5 +53,5 @@
     <br />
     <!-- Explicit Quotes Toggle -->
     <h3>allow explicit quotes</h3>
-    <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} />
+    <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} style="margin: auto;"/>
 </div>

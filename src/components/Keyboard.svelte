@@ -70,3 +70,39 @@
         <button id={character} on:click={guessCharacter} class={character.match(/^[0-9]+$/) != null ? 'number key' : 'letter key'}>{character}</button>
     {/each}
 </div>
+
+<style>
+    .keyboard {
+        margin: auto;
+    }
+
+    .key {
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.75rem;
+        margin: 0 2px;
+        margin-top: 2px;
+        cursor: pointer;
+    }
+
+    .number {
+        background-color: #2c394b;
+    }
+
+    .letter {
+        background-color: #334756;
+    }
+
+    .correct {
+        background-color: #3ccf4e;
+    }
+
+    .incorrect {
+        background-color: #cd3131;
+    }
+
+    .disabled {
+        cursor: none;
+        pointer-events: none;
+    }
+</style>
