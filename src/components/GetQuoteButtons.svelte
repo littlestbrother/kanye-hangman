@@ -52,6 +52,7 @@
     <button on:click={loadQuote}>receive words of wisdom from kanye west</button>
     <br />
     <!-- Explicit Quotes Toggle -->
+    <!-- TODO: allow user to select max quote length? -->
     <h3>allow explicit quotes</h3>
     <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} style="margin: auto;"/>
 </div>
