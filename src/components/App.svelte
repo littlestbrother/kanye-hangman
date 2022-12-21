@@ -37,6 +37,8 @@
             </div>
         {/if}
 
+            <!-- TODO: make a way to forfeit opportunity to answer to see quote -->
+
         <!-- render if the user has provided quote solution -->
         {#if outcome}
             <!-- outcome text -->
