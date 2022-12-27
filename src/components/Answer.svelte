@@ -1,5 +1,5 @@
 <script>
-    import { answerOutcome, guesses, quote } from '@src/helpers/storage';
+    import { userWon, guesses, quote, quoteUserSolution } from '@src/helpers/storage';
 
     // subscribe to values in storage
     let guessesData;
@@ -15,6 +15,7 @@
     let userSolution;
 
     const guessQuote = () => {
+
         // save the user from themselves if they accidentally submit nothing
         if (!userSolution) {
             return;
@@ -22,10 +23,13 @@
 
         // check if the user provided a solution that is correct- store the answer outcome accordingly
         if (userSolution.toLowerCase() == kanyeRestQuote) {
-            answerOutcome.update((value) => 'young scholar yeezus is impressed with your work! 🎉');
+            userWon.update((value) => true);
         } else {
-            answerOutcome.update((value) => "you ain't got the answers sway.");
+            userWon.update((value) => false);
         }
+
+        // store user solution
+        quoteUserSolution.update((value) => userSolution);
     };
 </script>
 
@@ -39,3 +43,9 @@
     {/if}
     <input bind:value={userSolution} type="text" placeholder="beware punctuation" /><button class="answer-button" on:click={guessQuote}>✓</button>
 </div>
+
+<style>
+    .answer-button {
+        background-color: #3ccf4e;
+    }
+</style>

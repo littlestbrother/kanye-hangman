@@ -1,7 +1,7 @@
 <script>
     import GetQuoteButtons from '@src/components/GetQuoteButtons.svelte';
     import Keyboard from '@src/components/Keyboard.svelte';
-    import { answerOutcome, quoteObfuscated } from '@src/helpers/storage';
+    import { userWon, quote, quoteObfuscated, quoteUserSolution } from '@src/helpers/storage';
     import Portrait from './Portrait.svelte';
     import Restart from './Restart.svelte';
 
@@ -11,22 +11,32 @@
         obfuscatedQuote = value;
     });
 
-    let outcome;
-    answerOutcome.subscribe((value) => {
-        outcome = value;
+    let userHasWon;
+    userWon.subscribe((value) => {
+        userHasWon = value;
+    });
+
+    let kanyeQuote;
+    quote.subscribe((value) => {
+        kanyeQuote = value;
+    });
+
+    let userSolution;
+    quoteUserSolution.subscribe((value) => {
+        userSolution = value;
     });
 </script>
 
 <main>
     <div>
         <!-- render if the quote has not been retrieved and obfuscated, and the user has not provided solution -->
-        {#if !obfuscatedQuote && !outcome}
+        {#if !obfuscatedQuote && (userHasWon == null || userHasWon == undefined)}
             <h1>what would <em>yeezus</em> do?</h1>
             <GetQuoteButtons />
         {/if}
 
         <!-- render if the quote has been retrieved and obfuscated, and the user has not provided solution -->
-        {#if obfuscatedQuote && !outcome}
+        {#if obfuscatedQuote && (userHasWon == null || userHasWon == undefined)}
             <h3>
                 <span style="background-color:#1a1a1a; padding:8px; border-radius:10px">what would <em>yeezus</em> do?</span>
             </h3>
@@ -37,23 +47,66 @@
             </div>
         {/if}
 
-            <!-- TODO: make a way to forfeit opportunity to answer to see quote -->
+        <!-- TODO: make a way to forfeit opportunity to answer to see quote -->
 
         <!-- render if the user has provided quote solution -->
-        {#if outcome}
-            <!-- outcome text -->
-            <h1 class="jumbo">{outcome}</h1>
-            <!-- if the user's solution was incorrect -->
-            {#if outcome == "you ain't got the answers sway."}
-                <img class="game-results-image" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
+        {#if userHasWon != null && userHasWon != undefined}
+            {#if userHasWon == true}
+                <h1>young scholar yeezus is impressed with your work! 🎉</h1>
+                <img class="game-results-image" alt="you won" src="https://media.tenor.com/SurWqHd37lIAAAAC/kanye-west-clap.gif" />
+                <h3><span class="quote success"><em>"{kanyeQuote}"</em></span></h3>
+                <h3>...is correct!</h3>
+            {:else}
+                <h1>you ain't got the answers sway.</h1>
+                <img class="game-results-image" alt="you lost" src="https://c.tenor.com/L-evXoE9VXoAAAAC/no-nope.gif" />
+                <h3>
+                    <span class="quote">
+                        <span class="success"><em>"{kanyeQuote}"</em></span>
+                        <hr />
+                        <span class="failure"><em>"{userSolution}"</em></span>
+                    </span>
+                </h3>
             {/if}
-
-            <!-- if the user succeeded -->
-            {#if outcome == 'young scholar yeezus is impressed with your work! 🎉'}
-                <img class="game-results-image" src="https://media.tenor.com/SurWqHd37lIAAAAC/kanye-west-clap.gif" />
-            {/if}
-            <!-- restart game button -->
             <Restart />
         {/if}
     </div>
 </main>
+
+<style>
+    .success {
+        color: #3ccf4e;
+    }
+
+    .failure {
+        color: #cd3131;
+    }
+
+    .quote {
+        background-color: #1a1a1a;
+        padding: 5px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+    .game-results-image {
+        width: 95%;
+        height: 10em;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .gameboard {
+        background-color: #212121;
+        border-radius: 10px;
+        padding: 1em;
+        margin: auto;
+        width: 95%;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .gameboard {
+            width: 45%;
+        }
+    }
+</style>

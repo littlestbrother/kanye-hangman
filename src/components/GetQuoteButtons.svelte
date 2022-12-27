@@ -49,9 +49,15 @@
 
 <div>
     <!-- Button for user to get quote from Kanye Rest API -->
-    <button on:click={loadQuote}>receive words of wisdom from kanye west</button>
+    <button on:click={loadQuote} class="start-button">receive words of wisdom from <em>kanye west</em></button>
     <br />
     <!-- Explicit Quotes Toggle -->
     <h3>allow explicit quotes</h3>
     <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} />
 </div>
+
+<style>
+    .start-button {
+        background-color: #332FD0;
+    }
+</style>

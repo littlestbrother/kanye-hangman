@@ -1,10 +1,10 @@
 <script>
-    import { answerOutcome, guesses, quote, quoteObfuscated, quoteResolved } from '@src/helpers/storage';
+    import { userWon, guesses, quote, quoteObfuscated, quoteResolved } from '@src/helpers/storage';
 
     // return values in storage to defaults
     const resetState = () => {
-        for (const e of [quote, quoteObfuscated, answerOutcome]) {
-            e.update((value) => undefined);
+        for (const e of [quote, quoteObfuscated, userWon]) {
+            e.update((value) => null);
         }
 
         const quoteResolvedEmpty = { correctCharacters: [] };
@@ -16,5 +16,5 @@
 </script>
 
 <div>
-    <button on:click={resetState}><h2>go again ↺</h2></button>
+    <button on:click={resetState}>go again ↺</button>
 </div>

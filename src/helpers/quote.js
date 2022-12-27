@@ -2,7 +2,7 @@ import { alphaNumericCharacters } from "@src/helpers/constants";
 
 // replace alpha-numeric characters with the middle dot ascii character (to hide the quote)
 export const obfuscateQuote = (quote) => {
-  let obfuscatedQuote = quote.replace(/[a-zA-Z0-9]/g, "·");
+  let obfuscatedQuote = quote.replace(/[a-zA-Z0-9]/g, "◆");
   return obfuscatedQuote
 }
 
