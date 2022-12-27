@@ -15,7 +15,7 @@
         toggled = value;
     });
 
-    // update explicitAllowed boolean on toggle (to be saved forever in storage even after this round)
+    // update explicitAllowed boolean on toggle (to be saved in storage even after this round)
     const allowExplicit = () => {
         explicitAllowed.update((value) => toggled);
     };
@@ -39,8 +39,6 @@
             guessesData.attemptsLeft = guessesData.attemptsAllowed;
             guesses.update((value) => guessesData);
 
-            // debug
-            console.log(kanyeRestQuote);
         } catch (err) {
             console.error(err);
         }
@@ -52,7 +50,6 @@
     <button on:click={loadQuote} class="start-button">receive words of wisdom from <em>kanye west</em></button>
     <br />
     <!-- Explicit Quotes Toggle -->
-    <!-- TODO: allow user to select max quote length? -->
     <h3>allow explicit quotes</h3>
     <Toggle class="toggle" bind:toggled hideLabel toggledColor="#3CCF4E" untoggledColor="#1a1a1a" on:toggle={allowExplicit} />
 </div>

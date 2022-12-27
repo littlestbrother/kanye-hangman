@@ -21,7 +21,7 @@
             return;
         }
 
-        // check if the user provided a solution that is correct- store the answer outcome accordingly
+        // check if the user provided a solution that is correct- update userWon value in storage accordingly
         if (userSolution.toLowerCase() == kanyeRestQuote) {
             userWon.update((value) => true);
         } else {

@@ -29,7 +29,7 @@
 
 <main>
     <div>
-        <!-- render if the quote has not been retrieved and obfuscated, and the user has not provided solution -->
+        <!-- render if the quote has not been retrieved and obfuscated, and the user has not provided a solution -->
         {#if !obfuscatedQuote && (userHasWon == null || userHasWon == undefined)}
             <h1>what would <em>yeezus</em> do?</h1>
             <GetQuoteButtons />
@@ -38,7 +38,7 @@
         <!-- render if the quote has been retrieved and obfuscated, and the user has not provided solution -->
         {#if obfuscatedQuote && (userHasWon == null || userHasWon == undefined)}
             <h3>
-                <span style="background-color:#1a1a1a; padding:8px; border-radius:10px">what would <em>yeezus</em> do?</span>
+                <span class="title">what would <em>yeezus</em> do?</span>
             </h3>
             <div class="gameboard">
                 <Portrait />
@@ -47,9 +47,7 @@
             </div>
         {/if}
 
-        <!-- TODO: make a way to forfeit opportunity to answer to see quote -->
-
-        <!-- render if the user has provided quote solution -->
+        <!-- render if the user has a provided quote solution -->
         {#if userHasWon != null && userHasWon != undefined}
             {#if userHasWon == true}
                 <h1>young scholar yeezus is impressed with your work! 🎉</h1>
@@ -67,12 +65,19 @@
                     </span>
                 </h3>
             {/if}
+            <!-- button to restart the game -->
             <Restart />
         {/if}
     </div>
 </main>
 
 <style>
+    .title {
+        background-color: #1a1a1a;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
     .success {
         color: #3ccf4e;
     }

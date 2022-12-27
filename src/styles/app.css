@@ -96,6 +96,8 @@ input:hover {
   text-align: center;
 }
 
+/* dynamic classes */
+
 .toggle {
   /* top: 3px; */
   margin: auto;
@@ -118,10 +120,6 @@ input:hover {
   background-color: #334756;
 }
 
-.keyboard {
-  margin: auto;
-}
-
 .disabled {
   cursor: none;
   pointer-events: none;
@@ -134,5 +132,3 @@ input:hover {
 .incorrect {
   background-color: #cd3131;
 }
-
-/* TODO: refactor styling in a better way? */
