@@ -3,7 +3,6 @@
     import { deObfuscateCharacters, getCharacterIndexes } from '@src/helpers/quote';
     import { guesses, quoteResolved, quote, quoteObfuscated } from '@src/helpers/storage';
     import Answer from './Answer.svelte';
-    import Tools from './Tools.svelte';
 
     // subscribe to values in storage
     let guessesData;
@@ -71,4 +70,3 @@
         <button id={character} on:click={guessCharacter} class={character.match(/^[0-9]+$/) != null ? 'number key' : 'letter key'}>{character}</button>
     {/each}
 </div>
-<Tools />
