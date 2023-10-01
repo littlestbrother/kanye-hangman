@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "yarn build && aws s3 sync --acl=public-read dist/ s3://www.ww-yeezus-do.net --profile aaron"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.1.0",
